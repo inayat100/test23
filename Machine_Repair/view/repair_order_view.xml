@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- THIS IS TREE VIEW  -->
+    <record id="repaie_id1_view_tree" model="ir.ui.view">
+        <field name="name">repaie_id1.view.tree</field>
+        <field name="model">repairorder</field>
+        <field name="arch" type="xml">
+            <tree string="Repair Order Tree">
+                <field name="sqn" />
+                <field name="subject" />
+                <field name="assigned_to" />
+                <field name="priority" widget="priority"/>
+                <field name="date_of_receipt" />
+            </tree>
+        </field>
+    </record>
+    <record id="repair_id2_view_form" model="ir.ui.view">
+        <field name="name">repair_id2.view.form</field>
+        <field name="model">repairorder</field>
+        <field name="arch" type="xml">
+            <form string="Repair Order Form">
+                <header>
+                    <button string="Go Product" name="%(Machine_Repair.product)d" type="action" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <b>
+                        <h1>
+                            <field name="sqn" />
+                        </h1>
+                    </b>
+                    <group col="2">
+                        <group>
+                            <field name="subject" />
+                            <field name="assigned_to" />
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority" />
+                            <field name="date_of_receipt" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="General" string="General">
+                            <separator string="Client Info" />
+                            <form string="">
+                                <group col="2">
+                                    <group>
+                                        <span class="o_form_label o_td_label">
+                                        </span>
+                                        <div class="o_address_format">
+                                            <field name="client" />
+                                            <field name="street" placeholder="street 1" class="o_address_street" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                            <field name="street2" placeholder="street 2" class="o_address_street" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                            <field name="city" placeholder="City Name" class="o_address_city" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                            <field name="state" placeholder="state Name" class="o_address_state" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                            <field name="zip" placeholder="Zip Code" class="o_address_zip" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                            <field name="country" placeholder="Country Name" class="o_address_country" attrs="{'invisible':[('form_bool','=',False)]}" />
+                                        </div>
+                                        <field name="contact_name" />
+                                        <field name="form_bool" invisible='1'/>
+                                    </group>
+                                    <group>
+                                        <field name="phone" />
+                                        <field name="mobile" />
+                                        <field name="email" />
+                                        <field name="contact_number" />
+                                    </group>
+                                </group>
+                            </form>
+                        </page>
+                    </notebook>
+                    <separator string="Machine Info" />
+                    <field name="reapair_order_lines">
+                        <tree string="Machine info">
+                            <field name="machine" />
+                            <field name="machine_name" />
+                            <field name="machine_model" />
+                            <field name="serial_number" />
+                            <field name="under_guarantee" />
+                            <field name="nature_of_service" />
+                        </tree>
+                        <form>
+                            <group col="2">
+                                <group>
+                                    <field name="machine" />
+                                    <field name="machine_name" />
+                                    <field name="machine_model" />
+                                </group>
+                                <group>
+                                    <field name="serial_number" />
+                                </group>
+                                
+                            </group>
+                            <notebook>
+                                <page  string="Service Dt...">
+                                    <form>
+                                        <group col="2">
+                                            <group>
+                                                <field name="under_guarantee" widget="radio" />
+                                                <field name="guarantee_type" widget="radio" />
+                                            </group>
+                                            <group>
+                                                <field name="nature_of_service" />
+                                            </group>
+                                        </group>
+                                    </form>
+                                </page>
+                            </notebook>
+                        </form>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="repair_action" model="ir.actions.act_window">
+        <field name="name">Repair Order</field>
+        <field name="res_model">repairorder</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="repairid3" name="Machine Repair"/>
+    <menuitem id="sub_repairid4" parent="repairid3" name="Machine Repair"/>
+    <menuitem id="sub_repairid5" parent="sub_repairid4" action="repair_action" name="Repair Order"/>
+</odoo>

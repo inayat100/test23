@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_view_kanban" model="ir.ui.view">
+        <field name="name">product.view.kanban</field>
+        <field name="model">product</field>
+        <field name="arch" type="xml">
+            <kanban string="prodect View" class="o_ares_partner_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div style="width:30%; float:left;">
+                                <field name="image" widget="image" width="100"/>
+                            </div>
+                            <div style="width:70%; float:right;">
+                                <ul style="list-style-type:none">
+                                    <li>
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        <field name="sale_price" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="product_view_tree" model="ir.ui.view">
+        <field name="name">product.view.tree</field>
+        <field name="model">product</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="sqnp" />
+                <field name="name" />
+                <field name="sold" />
+                <field name="purchased" />
+            </tree>
+        </field>
+    </record>
+    <record id="product_view_form" model="ir.ui.view">
+        <field name="name">product.view.form</field>
+        <field name="model">product</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <b>
+                        <h1>
+                            <field name="sqnp" />
+                        </h1>
+                    </b>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-arrows-v">
+                            Product Move
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-suitcase">
+                            Purchased
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-signal">
+                            Sold
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            Active
+                        </button>
+                    </div>
+                    <field name="image" widget="image" style="width:100px"/>
+                    <span>
+                        <h2>
+                            <field name="name"/>
+                        </h2>
+                    </span>
+                    <field name="sold"/>
+                    <b>For Sold  </b>
+                    <field name="purchased"/>
+                    <b>For purchased  </b>
+                    <notebook>
+                        <page string="General Information">
+                            <form>
+                                <group col="2">
+                                    <group>
+                                        <field name="product_type" />
+                                        <field name="internal_reference" />
+                                        <field name="barcode" />
+                                        <field name="machine" />
+                                        <field name="product_category" />
+                                    </group>
+                                    <group>
+                                        <field name="sale_price" />
+                                        <field name="customer_taxes" />
+                                        <field name="cost" />
+                                        <field name="company" />
+                                        <field name="unit_of_measure" />
+                                        <field name="purchased_unit_of_measure" />
+                                    </group>
+                                </group>
+                            </form>
+                        </page>
+                        <page string="Sales">
+                            <form>
+                            
+                            </form>
+                        </page>
+                        <page string="purchase">
+                            <form>
+                            
+                            </form>
+                        </page>
+                        <page string="Inventory">
+                            <form>
+                            
+                            </form>
+                        </page>
+                        <page string="Accounting">
+                            <form>
+                            
+                            </form>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="product" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">product</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <menuitem id="sub_product1" parent="repairid3" name="Products"/>
+    <menuitem id="sub_product2" parent="sub_product1" action="product" name="Product"/>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repairorder,access_repairorder,model_repairorder,base.group_user,1,1,1,1
+access_repairorder_line,access_repairorder_line,model_repairorder_line,base.group_user,1,1,1,1
+access_product,access_product,model_product,base.group_user,1,1,1,1
+
+
+
